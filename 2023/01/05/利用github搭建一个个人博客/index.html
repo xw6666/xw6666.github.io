@@ -23,18 +23,18 @@
 <meta property="og:site_name" content="XW&#39;s blog">
 <meta property="og:description" content="本文通过使用Hexo博客框架搭建静态博客，Hexo博客搭建简单，可以直接使用MarkDown直接写文章，然后Hexo将文章编译成静态文件就直接发布了，所以文章内容没有存放在数据库内。 1.准备条件 GitHub账号  域名（非必须）   2.新建GitHub仓库首先在GitHub任何页面右上角，使用+下拉菜单选择New repository  这里的仓库名称设置为 username.github.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="d:/code/xw6666/source/images/博客搭建教程/1.png">
-<meta property="og:image" content="d:/code/xw6666/source/images/博客搭建教程/2.png">
-<meta property="og:image" content="d:/code/xw6666/source/images/博客搭建教程/3.png">
-<meta property="og:image" content="d:/code/xw6666/source/images/博客搭建教程/4.png">
-<meta property="og:image" content="d:/code/xw6666/source/images/博客搭建教程/5.png">
-<meta property="og:image" content="d:/code/xw6666/source/images/博客搭建教程/6.png">
+<meta property="og:image" content="http://example.com/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/1.png">
+<meta property="og:image" content="http://example.com/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/2.png">
+<meta property="og:image" content="http://example.com/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/3.png">
+<meta property="og:image" content="http://example.com/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/4.png">
+<meta property="og:image" content="http://example.com/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/5.png">
+<meta property="og:image" content="http://example.com/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/6.png">
 <meta property="article:published_time" content="2023-01-05T07:33:31.000Z">
-<meta property="article:modified_time" content="2023-01-05T07:56:18.548Z">
+<meta property="article:modified_time" content="2023-01-05T08:05:06.357Z">
 <meta property="article:author" content="xw">
 <meta property="article:tag" content="杂项">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="d:/code/xw6666/source/images/博客搭建教程/1.png">
+<meta name="twitter:image" content="http://example.com/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/1.png">
   
   
   <title>利用GitHub搭建一个个人博客 - XW&#39;s blog</title>
@@ -204,7 +204,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      707 字
+      711 字
     </span>
   
 
@@ -253,30 +253,30 @@
 </li>
 </ul>
 <h1 id="2-新建GitHub仓库"><a href="#2-新建GitHub仓库" class="headerlink" title="2.新建GitHub仓库"></a>2.新建GitHub仓库</h1><p>首先在GitHub任何页面右上角，使用+下拉菜单选择New repository</p>
-<p><img src="D:\code\xw6666\source\images\博客搭建教程\1.png" srcset="/img/loading.gif" lazyload alt="1"></p>
+<p><img src="/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/1.png" srcset="/img/loading.gif" lazyload></p>
 <p>这里的仓库名称设置为 <mark>username.github.io</mark>，一定是你的用户名+github.io，例如我的用户名是xw6666，所以我建立的仓库名为<mark>xw6666.github.io</mark></p>
-<p><img src="D:\code\xw6666\source\images\博客搭建教程\2.png" srcset="/img/loading.gif" lazyload alt="2"></p>
+<p><img src="/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/2.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="3-为仓库设置SSH—Key"><a href="#3-为仓库设置SSH—Key" class="headerlink" title="3.为仓库设置SSH—Key"></a>3.为仓库设置SSH—Key</h1><h2 id="3-1创建密钥对"><a href="#3-1创建密钥对" class="headerlink" title="3.1创建密钥对"></a>3.1创建密钥对</h2><p>在git bash中输入以下命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/. ssh<br>ssh-keygen -t rsa -C <span class="hljs-string">&quot;邮件地址&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>其中邮箱地址是你的github邮箱</p>
 <p>然后连续三次回车，最终会生产文件在用户目录下，打开用户目录中的.ssh文件夹找到id_rsa.pub文件，如下图所示</p>
-<p><img src="D:\code\xw6666\source\images\博客搭建教程\3.png" srcset="/img/loading.gif" lazyload alt="3"></p>
+<p><img src="/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/3.png" srcset="/img/loading.gif" lazyload></p>
 <p>使用记事本打开id_rsa.pub并复制其中的所有内容</p>
 <p>之后打开你的GitHub主页点击右上角头像-&gt;Settings-&gt;SSH and GPG keys</p>
 <p>选择New SSH key </p>
-<p><img src="D:\code\xw6666\source\images\博客搭建教程\4.png" srcset="/img/loading.gif" lazyload alt="4"></p>
+<p><img src="/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/4.png" srcset="/img/loading.gif" lazyload></p>
 <p>将复制内容粘贴此处，Title随便写，之后点击Add SSH key</p>
-<p><img src="D:\code\xw6666\source\images\博客搭建教程\5.png" srcset="/img/loading.gif" lazyload alt="5"></p>
+<p><img src="/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/5.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="3-2测试是否添加成功"><a href="#3-2测试是否添加成功" class="headerlink" title="3.2测试是否添加成功"></a>3.2测试是否添加成功</h2><p>输入以下命令：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">ssh</span> -T git<span class="hljs-variable">@github</span>.com<br></code></pre></td></tr></table></figure>
 
 <p>如果看到以下类似内容，则测试成功</p>
-<p><img src="D:\code\xw6666\source\images\博客搭建教程\6.png" srcset="/img/loading.gif" lazyload alt="6"></p>
+<p><img src="/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/6.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="3-3配置git信息"><a href="#3-3配置git信息" class="headerlink" title="3.3配置git信息"></a>3.3配置git信息</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.name</span> <span class="hljs-string">&quot;用户名&quot;</span><br>git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.email</span>  <span class="hljs-string">&quot;邮箱&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>此处一定要填写你的GitHub用户名和GitHub绑定的邮箱</p>
-
+<h1 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h1>
             </div>
             <hr>
             <div>
