@@ -191,6 +191,53 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2022/11/14/%E9%9D%99%E6%80%81%E5%BA%93%E4%B8%8E%E5%8A%A8%E6%80%81%E5%BA%93%E7%9A%84%E5%88%B6%E4%BD%9C%E4%B8%8E%E4%BD%BF%E7%94%A8/" target="_self">
+          静态库与动态库的制作与使用
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/11/14/%E9%9D%99%E6%80%81%E5%BA%93%E4%B8%8E%E5%8A%A8%E6%80%81%E5%BA%93%E7%9A%84%E5%88%B6%E4%BD%9C%E4%B8%8E%E4%BD%BF%E7%94%A8/" target="_self">
+          
+          静态库制作与使用静态库以.a后缀结尾，制作方法如下： 12345libxxx.a:xx.o xx.o xx.o	ar -rc $@ $^       &#x2F;&#x2F;直接打包	%.o:%.c	gcc -c $&lt;                            当需要使用静态库时，如下编译： 1gcc -o $@ $^ -l头文件路径 -L库路径 -l库名     动态库制作与使用静态库以.so后缀
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-11-14 21:10" pubdate>
+              2022-11-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/linux/">linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/linux/">linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/03/31/%E7%BB%93%E6%9E%84%E4%BD%93%E7%A9%BA%E9%97%B4%E5%A4%A7%E5%B0%8F%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/" target="_self">
           结构体空间大小计算方法
         </a>
@@ -594,53 +641,6 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/03/05/string%E7%B1%BB%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0/" target="_self">
-          string类模拟实现
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/03/05/string%E7%B1%BB%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0/" target="_self">
-          
-          本文是关于cpp中string类的模拟实现代码结构其中代码结构如下图所示：   建立工程文件首先我们创建出工程文件，并在自己的命名空间内定义好自己的string类(为了防止和std库中的string发生命名污染),如图所示：   其中文件string.h我们用来实现string类，而文件Test.cpp我们用来对string类的测试。 设置类中的成员变量对于string类中的属性成员，因为我们要实
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-05 21:14" pubdate>
-              2022-03-05
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/cpp/">cpp</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/cpp/">cpp</a>
             
           </div>
         

@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>静态库与动态库的制作与使用</title>
+    <link href="/2022/11/14/%E9%9D%99%E6%80%81%E5%BA%93%E4%B8%8E%E5%8A%A8%E6%80%81%E5%BA%93%E7%9A%84%E5%88%B6%E4%BD%9C%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
+    <url>/2022/11/14/%E9%9D%99%E6%80%81%E5%BA%93%E4%B8%8E%E5%8A%A8%E6%80%81%E5%BA%93%E7%9A%84%E5%88%B6%E4%BD%9C%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="静态库制作与使用"><a href="#静态库制作与使用" class="headerlink" title="静态库制作与使用"></a>静态库制作与使用</h1><p>静态库以.a后缀结尾，制作方法如下：</p><figure class="highlight mel"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><pre><code class="hljs mel">libxxx.a:xx.o xx.o xx.o<br>ar -rc $@ $^       <span class="hljs-comment">//直接打包</span><br><br>%.o:%.c<br>gcc -c $&lt;                          <br></code></pre></td></tr></table></figure><p>当需要使用静态库时，如下编译：</p><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crystal">gcc -o <span class="hljs-variable">$@</span> <span class="hljs-variable">$^</span> -l头文件路径 -L库路径 -l库名   <br></code></pre></td></tr></table></figure><h1 id="动态库制作与使用"><a href="#动态库制作与使用" class="headerlink" title="动态库制作与使用"></a>动态库制作与使用</h1><p>静态库以.so后缀结尾，制作方法如下：</p><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mel">libxxx.so:xx.o xx.o<br>gcc -shared -o $@ $^ <br><br>%.o:%.c<br>gcc -fPIC -c $&lt;   <span class="hljs-comment">//-fPIC全部生成绝对地址，因为动态库用的时候才调用</span><br></code></pre></td></tr></table></figure><p>当需要使用动态库时，有如下方法：</p><ul><li><p>首先先编译：</p><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crystal">gcc -o <span class="hljs-variable">$@</span> <span class="hljs-variable">$ </span>-I+头文件路径 -L+库路径 -l+库名<br></code></pre></td></tr></table></figure></li><li><p>需要更改LD_LIBRARY_PATH环境变量路径</p></li><li><p>或者将.so文件拷贝到系统共享库目录下，一般是/usr/lib</p></li><li><p>ldconfig 配置/etc/ld.so.conf.d/, ldconfig更新</p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>linux</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>linux</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>结构体空间大小计算方法</title>
     <link href="/2022/03/31/%E7%BB%93%E6%9E%84%E4%BD%93%E7%A9%BA%E9%97%B4%E5%A4%A7%E5%B0%8F%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/"/>
     <url>/2022/03/31/%E7%BB%93%E6%9E%84%E4%BD%93%E7%A9%BA%E9%97%B4%E5%A4%A7%E5%B0%8F%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/</url>
