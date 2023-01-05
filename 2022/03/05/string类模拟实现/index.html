@@ -1,0 +1,548 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="xw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本文是关于cpp中string类的模拟实现代码结构其中代码结构如下图所示：   建立工程文件首先我们创建出工程文件，并在自己的命名空间内定义好自己的string类(为了防止和std库中的string发生命名污染),如图所示：   其中文件string.h我们用来实现string类，而文件Test.cpp我们用来对string类的测试。 设置类中的成员变量对于string类中的属性成员，因为我们要实">
+<meta property="og:type" content="article">
+<meta property="og:title" content="string类模拟实现">
+<meta property="og:url" content="http://example.com/2022/03/05/string%E7%B1%BB%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="XW&#39;s blog">
+<meta property="og:description" content="本文是关于cpp中string类的模拟实现代码结构其中代码结构如下图所示：   建立工程文件首先我们创建出工程文件，并在自己的命名空间内定义好自己的string类(为了防止和std库中的string发生命名污染),如图所示：   其中文件string.h我们用来实现string类，而文件Test.cpp我们用来对string类的测试。 设置类中的成员变量对于string类中的属性成员，因为我们要实">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/string/string%E7%B1%BB%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://example.com/images/string/string%E7%B1%BB%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B1.png">
+<meta property="og:image" content="http://example.com/images/string/string%E7%B1%BB%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B2.png">
+<meta property="og:image" content="http://example.com/images/string/string%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F.png">
+<meta property="og:image" content="http://example.com/images/string/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="http://example.com/images/string/%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="http://example.com/images/string/%E4%BC%A0%E7%BB%9F%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0.png">
+<meta property="og:image" content="http://example.com/images/string/%E7%8E%B0%E4%BB%A3%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0.png">
+<meta property="og:image" content="http://example.com/images/string/%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.png">
+<meta property="og:image" content="http://example.com/images/string/%E8%BF%94%E5%9B%9Ec%E5%AD%97%E7%AC%A6%E4%B8%B2.png">
+<meta property="og:image" content="http://example.com/images/string/%E8%BF%94%E5%9B%9E%E5%AD%97%E7%AC%A6%E4%B8%AA%E6%95%B0.png">
+<meta property="og:image" content="http://example.com/images/string/%5B%5D%E6%93%8D%E4%BD%9C%E7%AC%A6%E9%87%8D%E8%BD%BD.png">
+<meta property="og:image" content="http://example.com/images/string/%E8%BF%AD%E4%BB%A3%E5%99%A8.png">
+<meta property="og:image" content="http://example.com/images/string/begin%E5%92%8Cend.png">
+<meta property="og:image" content="http://example.com/images/string/%E6%89%A9%E5%AE%B9.png">
+<meta property="og:image" content="http://example.com/images/string/resize.png">
+<meta property="og:image" content="http://example.com/images/string/pushback.png">
+<meta property="og:image" content="http://example.com/images/string/append.png">
+<meta property="og:image" content="http://example.com/images/string/+=%E9%87%8D%E8%BD%BD.png">
+<meta property="og:image" content="http://example.com/images/string/%E5%AD%97%E7%AC%A6%E6%8F%92%E5%85%A5.png">
+<meta property="og:image" content="http://example.com/images/string/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8F%92%E5%85%A5.png">
+<meta property="og:image" content="http://example.com/images/string/string%E5%B0%8F%E4%BA%8E.png">
+<meta property="og:image" content="http://example.com/images/string/string%E7%AD%89%E4%BA%8E.png">
+<meta property="og:image" content="http://example.com/images/string/string%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6.png">
+<meta property="og:image" content="http://example.com/images/string/find.png">
+<meta property="og:image" content="http://example.com/images/string/stringclear.png">
+<meta property="og:image" content="http://example.com/images/string/stringerase.png">
+<meta property="og:image" content="http://example.com/images/string/string%E6%B5%81%E6%8F%92%E5%85%A5.png">
+<meta property="article:published_time" content="2022-03-05T13:14:33.000Z">
+<meta property="article:modified_time" content="2023-01-04T19:05:55.965Z">
+<meta property="article:author" content="xw">
+<meta property="article:tag" content="cpp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/images/string/string%E7%B1%BB%E7%BB%93%E6%9E%84.png">
+  
+  
+  <title>string类模拟实现 - XW&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>XW</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/taichi.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="string类模拟实现">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-05 21:14" pubdate>
+        2022年3月5日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      16 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">string类模拟实现</h1>
+            
+            <div class="markdown-body">
+              <h1 id="本文是关于cpp中string类的模拟实现"><a href="#本文是关于cpp中string类的模拟实现" class="headerlink" title="本文是关于cpp中string类的模拟实现"></a>本文是关于cpp中string类的模拟实现</h1><h2 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h2><p>其中代码结构如下图所示：</p>
+<p><img src="/images/string/string%E7%B1%BB%E7%BB%93%E6%9E%84.png" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<h2 id="建立工程文件"><a href="#建立工程文件" class="headerlink" title="建立工程文件"></a>建立工程文件</h2><p>首先我们创建出工程文件，并在自己的命名空间内定义好自己的string类(为了防止和std库中的string发生命名污染),如图所示：</p>
+<p><img src="/images/string/string%E7%B1%BB%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B1.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/images/string/string%E7%B1%BB%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B2.png" srcset="/img/loading.gif" lazyload></p>
+<p>其中文件string.h我们用来实现string类，而文件Test.cpp我们用来对string类的测试。</p>
+<h2 id="设置类中的成员变量"><a href="#设置类中的成员变量" class="headerlink" title="设置类中的成员变量"></a>设置类中的成员变量</h2><p>对于string类中的属性成员，因为我们要实现的是string的增删改查功能，所以必须维护三个成员，这三个成员变量如下图所示：</p>
+<p><img src="/images/string/string%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F.png" srcset="/img/loading.gif" lazyload></p>
+<p>其中，_str维护了我们的字符串， _size记录字符串中字符的数量， _capacity记录着这个string空间的大小。</p>
+<h2 id="编写构造函数与析构函数"><a href="#编写构造函数与析构函数" class="headerlink" title="编写构造函数与析构函数"></a>编写构造函数与析构函数</h2><h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>我们不用编写默认构造和带参数的构造函数两种，我们可以通过带缺省值的构造函数来少写一个不含参数的构造函数：</p>
+<p><img src="/images/string/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0.png" srcset="/img/loading.gif" lazyload></p>
+<p>所以缺省值自然是一个空的字符串了</p>
+<h3 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a>析构函数</h3><p>释放内存空间并置指针为空：</p>
+<p><img src="/images/string/%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="拷贝构造"><a href="#拷贝构造" class="headerlink" title="拷贝构造"></a>拷贝构造</h3><p>我们不能使用编译器给我们自动提供的拷贝构造，因为自动提供的拷贝构造是浅拷贝，而我们维护的字符串是char*类型，浅拷贝只拷贝了它的地址，之后析构的时候会对这个空间析构两次从而出现错误。</p>
+<p>对于拷贝构造，我们有两种实现方式</p>
+<ul>
+<li>第一种是传入字符串，规规矩矩的开空间，拷贝字符串，拷贝 _size和 _capacity。</li>
+</ul>
+<p><img src="/images/string/%E4%BC%A0%E7%BB%9F%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>第二种是通过复用构造函数，我们首先先将需要拷贝的类中的 _str设置为空指针，然后调用构造函数，构造出和传入的需要拷贝的string类有着相同字符串的一个类，之后再通过swap函数把 _str和构造出的类中的 _str调换，由于需要拷贝的类中的 _str 一开始被我们设置为nullptr，所以调换完不用理会它，不会产生内存泄漏。</li>
+</ul>
+<p><img src="/images/string/%E7%8E%B0%E4%BB%A3%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="赋值运算符重载"><a href="#赋值运算符重载" class="headerlink" title="赋值运算符重载"></a>赋值运算符重载</h3><p>有了拷贝构造，我们直接复用它去实现赋值运算符的重载：</p>
+<p><img src="/images/string/%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="返回c语言类型字符串和字符数"><a href="#返回c语言类型字符串和字符数" class="headerlink" title="返回c语言类型字符串和字符数"></a>返回c语言类型字符串和字符数</h2><p>在写完构造函数后，我们想验证构造函数的正确性，可以写一个返回c语言类型的字符串的一个函数，这样我们就能直接打印字符串了，如图所示：</p>
+<p><img src="/images/string/%E8%BF%94%E5%9B%9Ec%E5%AD%97%E7%AC%A6%E4%B8%B2.png" srcset="/img/loading.gif" lazyload alt="返回c字符串"></p>
+<p>同样一并实现返回字符个数的函数：</p>
+<p><img src="/images/string/%E8%BF%94%E5%9B%9E%E5%AD%97%E7%AC%A6%E4%B8%AA%E6%95%B0.png" srcset="/img/loading.gif" lazyload alt="返回字符个数"></p>
+<h2 id="完成遍历字符串操作"><a href="#完成遍历字符串操作" class="headerlink" title="完成遍历字符串操作"></a>完成遍历字符串操作</h2><p>有了返回字符串中字符个数的函数，我们只需要对”[]“操作符进行重载就可以用for循环去打印字符串了。</p>
+<h3 id="操作符重载"><a href="#操作符重载" class="headerlink" title="[]操作符重载"></a>[]操作符重载</h3><p><img src="/images/string/%5B%5D%E6%93%8D%E4%BD%9C%E7%AC%A6%E9%87%8D%E8%BD%BD.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="迭代器的定义"><a href="#迭代器的定义" class="headerlink" title="迭代器的定义"></a>迭代器的定义</h3><p>对于实现范围for和迭代器循环打印，我们只需要定义一下迭代器就好了，在string中其实就是一个指针：</p>
+<p><img src="/images/string/%E8%BF%AD%E4%BB%A3%E5%99%A8.png" srcset="/img/loading.gif" lazyload></p>
+<p>在提供一些begin和end函数：</p>
+<p><img src="/images/string/begin%E5%92%8Cend.png" srcset="/img/loading.gif" lazyload></p>
+<p>这样就能够实现打印循环打印字符了</p>
+<h2 id="字符串增加操作"><a href="#字符串增加操作" class="headerlink" title="字符串增加操作"></a>字符串增加操作</h2><h3 id="实现push-back-函数"><a href="#实现push-back-函数" class="headerlink" title="实现push_back()函数"></a>实现push_back()函数</h3><p>push_back(ch)作用为在字符串最后面追加一个字符ch，为了保证字符串空间够大，我们必须写一个扩容函数reserve()</p>
+<h4 id="实现reserve-函数"><a href="#实现reserve-函数" class="headerlink" title="实现reserve()函数"></a>实现reserve()函数</h4><p>reserve函数的参数是一个非负数n，意思是把string类管理的空间扩容到n字节，逻辑很好实现，首先判断传入的参数是否大于现有空间，如果不大于就直接不处理，大于就开一个新空间，把原来的字符串拷贝到新空间，把新空间的地址给到 _str:<br><img src="/images/string/%E6%89%A9%E5%AE%B9.png" srcset="/img/loading.gif" lazyload alt="扩容函数"></p>
+<h4 id="实现resize-函数"><a href="#实现resize-函数" class="headerlink" title="实现resize()函数"></a>实现resize()函数</h4><p>既然有了reserve()函数，我们可以实现一下resize()函数。</p>
+<p>resize()函数的作用是将字符串设置为n个字符，并用指定字符填充。</p>
+<p><img src="/images/string/resize.png" srcset="/img/loading.gif" lazyload></p>
+<p>有了扩容函数，实现push_back()就变得非常简单了:</p>
+<p><img src="/images/string/pushback.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="实现append-函数"><a href="#实现append-函数" class="headerlink" title="实现append()函数"></a>实现append()函数</h3><p>append()函数的作用是在字符串末尾追加字符串，所以实现的逻辑和push_back()类似：首先检查空间是否充足，如果不够就扩容，最后把字符串放进去即可：</p>
+<p><img src="/images/string/append.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="操作符重载-1"><a href="#操作符重载-1" class="headerlink" title="+=操作符重载"></a>+=操作符重载</h3><p>实现了append()函数，对append()函数复用，就可以得到+=操作符重载的实现：</p>
+<p><img src="/images/string/+=%E9%87%8D%E8%BD%BD.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="实现insert-函数"><a href="#实现insert-函数" class="headerlink" title="实现insert()函数"></a>实现insert()函数</h3><p>insert函数有两种：</p>
+<ul>
+<li><p>第一种是插入一个字符：<br><img src="/images/string/%E5%AD%97%E7%AC%A6%E6%8F%92%E5%85%A5.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>第二种插入一个字符串：</p>
+<p><img src="/images/string/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8F%92%E5%85%A5.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+<h2 id="字符串逻辑运算符"><a href="#字符串逻辑运算符" class="headerlink" title="字符串逻辑运算符"></a>字符串逻辑运算符</h2><p>对于逻辑运算符，我们只需要实现小于和等于，其他的都可以通过复用实现，比如要实现大于，其实就是不小于等于。</p>
+<h3 id="lt-运算符实现"><a href="#lt-运算符实现" class="headerlink" title="&lt;运算符实现"></a>&lt;运算符实现</h3><p><img src="/images/string/string%E5%B0%8F%E4%BA%8E.png" srcset="/img/loading.gif" lazyload alt="string小于"></p>
+<h3 id="运算符实现"><a href="#运算符实现" class="headerlink" title="==运算符实现"></a>==运算符实现</h3><p><img src="/images/string/string%E7%AD%89%E4%BA%8E.png" srcset="/img/loading.gif" lazyload alt="string等于"></p>
+<h3 id="其余各种逻辑运算符"><a href="#其余各种逻辑运算符" class="headerlink" title="其余各种逻辑运算符"></a>其余各种逻辑运算符</h3><p><img src="/images/string/string%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="字符串查找"><a href="#字符串查找" class="headerlink" title="字符串查找"></a>字符串查找</h2><p>find()函数的实现比较简单，这里不再赘述：</p>
+<p><img src="/images/string/find.png" srcset="/img/loading.gif" lazyload></p>
+<p>对于这里的查找字串函数，可以使用更高效的算法比如kmp，这里笔者偷个懒直接使用时间复杂度较高的strstr()库函数</p>
+<h2 id="实现clear-和erase-以及流插入运算符"><a href="#实现clear-和erase-以及流插入运算符" class="headerlink" title="实现clear()和erase()以及流插入运算符"></a>实现clear()和erase()以及流插入运算符</h2><h4 id="clear-函数"><a href="#clear-函数" class="headerlink" title="clear()函数"></a>clear()函数</h4><p>clear函数的实现比较简单，直接在下标为0处放入’\0’，再把 _size改成0即可:</p>
+<p><img src="/images/string/stringclear.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="erase-函数"><a href="#erase-函数" class="headerlink" title="erase()函数"></a>erase()函数</h4><p>erase()函数第一个参数是一个非负整数，表示从这个位置开始删除，第二个参数也是一个非负整数，表示要删除的字符数：</p>
+<p><img src="/images/string/stringerase.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="流插入运算符重载"><a href="#流插入运算符重载" class="headerlink" title="流插入运算符重载"></a>流插入运算符重载</h4><p>这个比较简单，跟着模板来，遍历输出字符串就好：</p>
+<p><img src="/images/string/string%E6%B5%81%E6%8F%92%E5%85%A5.png" srcset="/img/loading.gif" lazyload></p>
+<p>至此，string常用的函数我们都已经实现，本篇文章到此结束，谢谢观看！</p>
+<p><em><strong>the end</strong></em></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/cpp/">cpp</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/cpp/">cpp</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/16/%E7%89%9B%E7%9A%84%E5%AD%A6%E6%9C%AF%E5%9C%881/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">牛的学术圈1</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/%E5%8E%9F%E5%8D%9A%E5%AE%A2%E5%9C%B0%E5%9D%80/">
+                        <span class="hidden-mobile">原博客地址</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://github.com/xw6666" target="_blank" rel="nofollow noopener"><span>MyGithub</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
