@@ -244,7 +244,7 @@ git checkout source
 
 ```
 git add .  //将当前目录下的所有内容加入
-git commit -n "注释"  //提交并注释
+git commit -m "注释"  //提交并注释
 git push origin source   //推送到远端分支
 ```
 
