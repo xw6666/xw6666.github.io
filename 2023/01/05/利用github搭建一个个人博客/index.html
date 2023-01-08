@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://www.oeee.top/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/6.png">
 <meta property="og:image" content="http://www.oeee.top/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/7.png">
 <meta property="article:published_time" content="2023-01-05T07:33:31.000Z">
-<meta property="article:modified_time" content="2023-01-06T06:49:51.410Z">
+<meta property="article:modified_time" content="2023-01-08T13:56:56.101Z">
 <meta property="article:author" content="xw">
 <meta property="article:tag" content="杂项">
 <meta name="twitter:card" content="summary_large_image">
@@ -299,7 +299,7 @@
 <h2 id="5-3本地运行项目"><a href="#5-3本地运行项目" class="headerlink" title="5.3本地运行项目"></a>5.3本地运行项目</h2><p>输入以下命令本地运行项目</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo s</span><br></code></pre></td></tr></table></figure>
 
-<p>之后项目会默认跑在<a target="_blank" rel="noopener" href="http://localhost:4000/%E4%B8%8B%EF%BC%8C%E6%89%93%E5%BC%80%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%9B%E5%85%A5%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%BE%8B%E5%A6%82%EF%BC%9A">http://localhost:4000/下，打开浏览器进入会看到你的博客例如：</a></p>
+<p>之后项目会默认跑在<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a>下，打开浏览器进入会看到你的博客例如：</p>
 <p><img src="/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/7.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="6-部署项目"><a href="#6-部署项目" class="headerlink" title="6.部署项目"></a>6.部署项目</h1><p>部署项目以后，别人就能访问到你的网站了，hexo给了我们命令让我们可以直接无脑部署。</p>
 <h2 id="6-1设置部署地址"><a href="#6-1设置部署地址" class="headerlink" title="6.1设置部署地址"></a>6.1设置部署地址</h2><p>打开项目根目录下的<code>_config.yml</code>文件，拉到最底下可以看到Deployment，把新建好的复制过来，指定分支为mastero保存退出即可。</p>
@@ -314,7 +314,7 @@
 <p>如果此时出现连接不上github而导致失败的情况，可以参考以下两篇博客：</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Hodors/article/details/103226958">https://blog.csdn.net/Hodors/article/details/103226958</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_40908748/article/details/122367878">https://blog.csdn.net/weixin_40908748/article/details/122367878</a></p>
-<h2 id="6-4访问测试"><a href="#6-4访问测试" class="headerlink" title="6.4访问测试"></a>6.4访问测试</h2><p>成功后，这时候我们访问一下 GitHub Repository 同名的链接，比如我的<code>xw6666</code>博客的 Repository 名称取的是<code>xw6666.github.io</code>，那我就访问 <a target="_blank" rel="noopener" href="http://59devops.github.io/">http://xw6666.github.io</a>，这时候我们就可以看到跟本地一模一样的博客内容了，如果看不到不要着急，github有延迟，等几分钟就行了。</p>
+<h2 id="6-4访问测试"><a href="#6-4访问测试" class="headerlink" title="6.4访问测试"></a>6.4访问测试</h2><p>成功后，这时候我们访问一下 GitHub Repository 同名的链接，比如我的<code>xw6666</code>博客的 Repository 名称取的是<code>xw6666.github.io</code>，那我就访问 <a target="_blank" rel="noopener" href="http://xw6666.github.io/">http://xw6666.github.io</a>，这时候我们就可以看到跟本地一模一样的博客内容了，如果看不到不要着急，github有延迟，等几分钟就行了。</p>
 <h2 id="6-5备份源码"><a href="#6-5备份源码" class="headerlink" title="6.5备份源码"></a>6.5备份源码</h2><p>因为是静态博客，所以我写的文章都在本地，那我换了电脑之后就没了，所以需要备份，备份很简单，新建一个其他分支，然后全push上去就行了，例如我创建了一个source分支保存源码。</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git init    <span class="hljs-comment">//初始化项目</span><br>git checkout -<span class="hljs-selector-tag">b</span> source    <span class="hljs-comment">//创建并切换到source分支</span><br>git add -A    <span class="hljs-comment">//添加所有文件到暂存区</span><br>git commit -m <span class="hljs-string">&quot;init blog&quot;</span>    <span class="hljs-comment">//提交并注释</span><br>git remote add origin git@github<span class="hljs-selector-class">.com</span>:xw6666/xw6666<span class="hljs-selector-class">.github</span><span class="hljs-selector-class">.io</span><span class="hljs-selector-class">.git</span>    <span class="hljs-comment">//添加到远程仓库</span><br>git push origin source    <span class="hljs-comment">//将代码提交到远程的source分支</span><br></code></pre></td></tr></table></figure>
 
