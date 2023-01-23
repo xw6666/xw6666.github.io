@@ -133,7 +133,7 @@ hexo g
 hexo s
 ```
 
-之后项目会默认跑在http://localhost:4000/下，打开浏览器进入会看到你的博客例如：
+之后项目会默认跑在[http://localhost:4000/](http://localhost:4000/)下，打开浏览器进入会看到你的博客例如：
 
 ![](/images/博客搭建教程/7.png)
 
@@ -178,7 +178,7 @@ https://blog.csdn.net/weixin_40908748/article/details/122367878
 
 ## 6.4访问测试
 
-成功后，这时候我们访问一下 GitHub Repository 同名的链接，比如我的`xw6666`博客的 Repository 名称取的是`xw6666.github.io`，那我就访问 [http://xw6666.github.io](http://59devops.github.io/)，这时候我们就可以看到跟本地一模一样的博客内容了，如果看不到不要着急，github有延迟，等几分钟就行了。
+成功后，这时候我们访问一下 GitHub Repository 同名的链接，比如我的`xw6666`博客的 Repository 名称取的是`xw6666.github.io`，那我就访问 [http://xw6666.github.io](http://xw6666.github.io/)，这时候我们就可以看到跟本地一模一样的博客内容了，如果看不到不要着急，github有延迟，等几分钟就行了。
 
 ## 6.5备份源码
 
