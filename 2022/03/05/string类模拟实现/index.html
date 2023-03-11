@@ -19,44 +19,44 @@
     <meta name="description" content="本文是关于cpp中string类的模拟实现代码结构其中代码结构如下图所示：   建立工程文件首先我们创建出工程文件，并在自己的命名空间内定义好自己的string类(为了防止和std库中的string发生命名污染),如图所示：   其中文件string.h我们用来实现string类，而文件Test.cpp我们用来对string类的测试。 设置类中的成员变量对于string类中的属性成员，因为我们要实">
 <meta property="og:type" content="article">
 <meta property="og:title" content="string类模拟实现">
-<meta property="og:url" content="http://www.oeee.top/2022/03/05/string%E7%B1%BB%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:url" content="http://www.wjr.today/2022/03/05/string%E7%B1%BB%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="XW&#39;s blog">
 <meta property="og:description" content="本文是关于cpp中string类的模拟实现代码结构其中代码结构如下图所示：   建立工程文件首先我们创建出工程文件，并在自己的命名空间内定义好自己的string类(为了防止和std库中的string发生命名污染),如图所示：   其中文件string.h我们用来实现string类，而文件Test.cpp我们用来对string类的测试。 设置类中的成员变量对于string类中的属性成员，因为我们要实">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.oeee.top/images/string/string%E7%B1%BB%E7%BB%93%E6%9E%84.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/string%E7%B1%BB%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B1.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/string%E7%B1%BB%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B2.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/string%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/%E4%BC%A0%E7%BB%9F%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/%E7%8E%B0%E4%BB%A3%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/%E8%BF%94%E5%9B%9Ec%E5%AD%97%E7%AC%A6%E4%B8%B2.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/%E8%BF%94%E5%9B%9E%E5%AD%97%E7%AC%A6%E4%B8%AA%E6%95%B0.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/%5B%5D%E6%93%8D%E4%BD%9C%E7%AC%A6%E9%87%8D%E8%BD%BD.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/%E8%BF%AD%E4%BB%A3%E5%99%A8.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/begin%E5%92%8Cend.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/%E6%89%A9%E5%AE%B9.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/resize.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/pushback.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/append.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/+=%E9%87%8D%E8%BD%BD.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/%E5%AD%97%E7%AC%A6%E6%8F%92%E5%85%A5.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8F%92%E5%85%A5.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/string%E5%B0%8F%E4%BA%8E.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/string%E7%AD%89%E4%BA%8E.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/string%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/find.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/stringclear.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/stringerase.png">
-<meta property="og:image" content="http://www.oeee.top/images/string/string%E6%B5%81%E6%8F%92%E5%85%A5.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/string%E7%B1%BB%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/string%E7%B1%BB%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B1.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/string%E7%B1%BB%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B2.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/string%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/%E4%BC%A0%E7%BB%9F%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/%E7%8E%B0%E4%BB%A3%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/%E8%BF%94%E5%9B%9Ec%E5%AD%97%E7%AC%A6%E4%B8%B2.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/%E8%BF%94%E5%9B%9E%E5%AD%97%E7%AC%A6%E4%B8%AA%E6%95%B0.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/%5B%5D%E6%93%8D%E4%BD%9C%E7%AC%A6%E9%87%8D%E8%BD%BD.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/%E8%BF%AD%E4%BB%A3%E5%99%A8.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/begin%E5%92%8Cend.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/%E6%89%A9%E5%AE%B9.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/resize.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/pushback.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/append.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/+=%E9%87%8D%E8%BD%BD.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/%E5%AD%97%E7%AC%A6%E6%8F%92%E5%85%A5.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8F%92%E5%85%A5.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/string%E5%B0%8F%E4%BA%8E.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/string%E7%AD%89%E4%BA%8E.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/string%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/find.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/stringclear.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/stringerase.png">
+<meta property="og:image" content="http://www.wjr.today/images/string/string%E6%B5%81%E6%8F%92%E5%85%A5.png">
 <meta property="article:published_time" content="2022-03-05T13:14:33.000Z">
 <meta property="article:modified_time" content="2023-01-05T07:12:37.011Z">
 <meta property="article:author" content="xw">
 <meta property="article:tag" content="cpp">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://www.oeee.top/images/string/string%E7%B1%BB%E7%BB%93%E6%9E%84.png">
+<meta name="twitter:image" content="http://www.wjr.today/images/string/string%E7%B1%BB%E7%BB%93%E6%9E%84.png">
   
   
   <title>string类模拟实现 - XW&#39;s blog</title>
@@ -96,7 +96,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"www.oeee.top","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.wjr.today","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
