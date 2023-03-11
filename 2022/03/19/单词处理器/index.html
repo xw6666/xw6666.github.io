@@ -1,258 +1,247 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="author" content="xw">
-    
-    
-    
-    
-    
-    
-    <title>单词处理器 | XW&#39;s blog</title>
-    <link href="http://www.wjr.today" rel="prefetch" />
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="xw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="单词处理器本题来自于[](1442. 单词处理器 - AcWing题库)  思路：这道题是一道简单的模拟题，我们只需要维护一个当前行数的字符数cnt  如果cnt加上下一个串的字符数会大于题目给的k，就另起一行打印字符串，并把cnt更新为这个串的字符数 如果cnt加上下一个串的字符数小于等于k，就直接在本行打印字符串，并把cnt加等于这个串的字符数  12345678910111213141516">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单词处理器">
+<meta property="og:url" content="http://www.wjr.today/2022/03/19/%E5%8D%95%E8%AF%8D%E5%A4%84%E7%90%86%E5%99%A8/index.html">
+<meta property="og:site_name" content="XW&#39;s blog">
+<meta property="og:description" content="单词处理器本题来自于[](1442. 单词处理器 - AcWing题库)  思路：这道题是一道简单的模拟题，我们只需要维护一个当前行数的字符数cnt  如果cnt加上下一个串的字符数会大于题目给的k，就另起一行打印字符串，并把cnt更新为这个串的字符数 如果cnt加上下一个串的字符数小于等于k，就直接在本行打印字符串，并把cnt加等于这个串的字符数  12345678910111213141516">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.wjr.today/images/%E5%8D%95%E8%AF%8D%E5%A4%84%E7%90%86%E5%99%A8/%E5%8D%95%E8%AF%8D%E5%A4%84%E7%90%86%E5%99%A8.png">
+<meta property="article:published_time" content="2022-03-19T07:00:34.000Z">
+<meta property="article:modified_time" content="2023-01-05T07:12:37.013Z">
+<meta property="article:author" content="xw">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://www.wjr.today/images/%E5%8D%95%E8%AF%8D%E5%A4%84%E7%90%86%E5%99%A8/%E5%8D%95%E8%AF%8D%E5%A4%84%E7%90%86%E5%99%A8.png">
+  
+  
+  <title>单词处理器 - XW&#39;s blog</title>
 
-    
-<link rel="stylesheet" href="/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/aos.css">
-<link rel="stylesheet" href="/css/style.css">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
-    
-<script src="/js/jquery.min.js"></script>
 
-    
-<script src="/js/bootstrap.min.js"></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
+  
     
-<script src="/js/aos.js"></script>
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
 
-    
-<script src="/js/highslide/highslide-full.min.js"></script>
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
 
-    
-<link rel="stylesheet" href="/js/highslide/highslide.css">
 
-    <style type="text/css">
-        @media (max-width: 768px) {
-            body {
-                background-color: #f0f0f0;
-                background: url('/imgs/xsbg.gif');
-                background-attachment: fixed;
-            }
-        }
-    </style>
-    
-    <!--<script type="text/javascript">
-      if (document.images) {
-        var avatar = new Image();
-        avatar.src = '/imgs/avatar.jpg'
-        var previews = 'preview1.jpg,preview2.jpg,preview3.jpg,preview4.jpg'.split(',')
-        var previewsPreLoad = []
-        for(var i = 0; i < length; i++) {
-          previewsPreLoad.push(new Image())
-          previewsPreLoad[previewsPreLoad.length - 1].src = '/imgs/preview' + previews[i]
-        }
-      }
-    </script>-->
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"www.wjr.today","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.4.2"></head>
+
+
 <body>
-    <!-- 背景轮播图功能 -->
-    <section class="hidden-xs">
-    <ul class="cb-slideshow">
-        <li><span>天若</span></li>
-        <li><span>有情</span></li>
-        <li><span>天亦老</span></li>
-        <li><span>我为</span></li>
-        <li><span>长者</span></li>
-        <li><span>续一秒</span></li>
-    </ul>
-</section>
-    <!-- 欧尼酱功能, 谁用谁知道 -->
-    
-    <header class="navbar navbar-inverse" id="gal-header">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed"
-                    data-toggle="collapse" data-target=".bs-navbar-collapse"
-                    aria-expanded="false">
-                <span class="fa fa-lg fa-reorder"></span>
-            </button>
-            <a href="http://www.wjr.today">
-                
-                <style>
-                    #gal-header .navbar-brand {
-                        height: 54px;
-                        line-height: 24px;
-                        font-size: 28px;
-                        opacity: 1;
-                        background-color: rgba(0,0,0,0);
-                        text-shadow: 0 0 5px #fff,0 0 10px #fff,0 0 15px #fff,0 0 20px #228DFF,0 0 35px #228DFF,0 0 40px #228DFF,0 0 50px #228DFF,0 0 75px #228DFF;
-                    }
-                </style>
-                <!-- 这里使用文字(navbar_text or config.title) -->
-                <div class="navbar-brand">XW&#39;s blog</div>
-                
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>XW</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
-        </div>
-        <div class="collapse navbar-collapse bs-navbar-collapse">
-            <ul class="nav navbar-nav" id="menu-gal">
-                
-                
-                <li class="">
-                    <a href="/">
-                        <i class="fa fa-home"></i>首页
-                    </a>
-                </li>
-                
-                
-                
-                <li class="">
-                    <a href="/archives">
-                        <i class="fa fa-archive"></i>归档
-                    </a>
-                </li>
-                
-                
-                
-                
-                <li class="dropdown">
-                    <!-- TODO 添加hover dropdown效果 -->
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
-                        <i class="fa fa-list"></i>分类
-                    </a>
-                    <ul class="dropdown-menu">
-                        
-                        
-                        <li>
-                            <a href="/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">每日一题</a>
-                        </li>
-                        
-                        <li>
-                            <a href="/categories/cpp/">cpp</a>
-                        </li>
-                        
-                        <li>
-                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-                        </li>
-                        
-                        
-                        <li>
-                            <a href="/categories">...</a>
-                        </li>
-                        
-                        
-                    </ul>
-                </li>
-                
-                
-                
-                
-                
-                <li class="dropdown">
-                    <!-- TODO 添加hover dropdown效果 -->
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
-                        <i class="fa fa-tags"></i>标签
-                    </a>
-                    <ul class="dropdown-menu">
-                        
-                        
-                        <li>
-                            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-                        </li>
-                        
-                        <li>
-                            <a href="/tags/cpp/">cpp</a>
-                        </li>
-                        
-                        <li>
-                            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-                        </li>
-                        
-                        
-                        <li>
-                            <a href="/tags">...</a>
-                        </li>
-                        
-                        
-                    </ul>
-                </li>
-                
-                
-                
-                
-                <li class="">
-                    <a href="/about">
-                        <i class="fa fa-user"></i>关于我
-                    </a>
-                </li>
-                
-                
-            </ul>
-        </div>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
-</header>
-    <div id="gal-body">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 gal-right" id="mainstay">
-                    
-<article class="article well article-body" id="article">
-    <div class="breadcrumb">
-        <i class="fa fa-home"></i>
-        <a href="http://www.wjr.today">XW&#39;s blog</a>
-        >
-        <span>单词处理器</span>
-    </div>
-    <!-- 大型设备详细文章 -->
-    <div class="hidden-xs">
-        <div class="title-article">
-            <h1>
-                <a href="/2022/03/19/%E5%8D%95%E8%AF%8D%E5%A4%84%E7%90%86%E5%99%A8/">单词处理器</a>
-            </h1>
-        </div>
-        <div class="tag-article">
-            
-            <span class="label label-gal">
-                <i class="fa fa-tags"></i>
-                
-                <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-                
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/1.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="单词处理器">
+              
             </span>
+
             
-            <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2022-03-19
-            </span>
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-19 15:00" pubdate>
+        2022年3月19日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      undefined 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      NaN 分钟
+    </span>
+  
+
+  
+  
+</div>
+
             
+          </div>
+
+          
         </div>
+      </div>
     </div>
-    <!-- 小型设备详细文章 -->
-    <div class="visible-xs">
-        <center>
-            <div class="title-article">
-                <h4>
-                    <a href="/2022/03/19/%E5%8D%95%E8%AF%8D%E5%A4%84%E7%90%86%E5%99%A8/">单词处理器</a>
-                </h4>
-            </div>
-            <p>
-                <i class="fa fa-calendar"></i> 2022-03-19
-            </p>
-            <p>
-                
-                <i class="fa fa-tags"></i>
-                
-                <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-                
-                
-                
-            </p>
-        </center>
-    </div>
-    <div class="content-article">
-        <h1 id="单词处理器"><a href="#单词处理器" class="headerlink" title="单词处理器"></a>单词处理器</h1><p>本题来自于[](<a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/1444/">1442. 单词处理器 - AcWing题库</a>)</p>
-<p><img src="/images/%E5%8D%95%E8%AF%8D%E5%A4%84%E7%90%86%E5%99%A8/%E5%8D%95%E8%AF%8D%E5%A4%84%E7%90%86%E5%99%A8.png"></p>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">单词处理器</h1>
+            
+            <div class="markdown-body">
+              <h1 id="单词处理器"><a href="#单词处理器" class="headerlink" title="单词处理器"></a>单词处理器</h1><p>本题来自于[](<a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/1444/">1442. 单词处理器 - AcWing题库</a>)</p>
+<p><img src="/images/%E5%8D%95%E8%AF%8D%E5%A4%84%E7%90%86%E5%99%A8/%E5%8D%95%E8%AF%8D%E5%A4%84%E7%90%86%E5%99%A8.png" srcset="/img/loading.gif" lazyload></p>
 <p>思路：这道题是一道简单的模拟题，我们只需要维护一个当前行数的字符数cnt</p>
 <ul>
 <li>如果cnt加上下一个串的字符数会大于题目给的k，就另起一行打印字符串，并把cnt更新为这个串的字符数</li>
@@ -261,352 +250,209 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n,k;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (n -- )</span><br><span class="line">    &#123;</span><br><span class="line">        string s;</span><br><span class="line">        cin &gt;&gt; s;</span><br><span class="line">        cnt += s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(cnt &gt; k)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; endl;</span><br><span class="line">            cout &lt;&lt; s &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">            cnt = s.<span class="built_in">size</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; s &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-    </div>
-</article>
-
-
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">每日一题</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/22/%E4%B8%89%E8%A7%92%E5%BD%A2/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">三角形</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/19/%E8%A1%8C%E7%9F%A5%E6%9D%AF%E9%A2%98%E8%A7%A3/">
+                        <span class="hidden-mobile">新年赛题解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
                 </div>
-                <aside class="col-md-4 gal-left" id="sidebar">
-    <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
-<aside id="sidebar-search">
-    <div class="search hidden-xs" data-aos="fade-up" data-aos-duration="2000">
-        <form class="form-inline clearfix" id="search-form" method="get"
-              action="/search/index.html">
-            <input type="text" name="s" class="form-control" id="searchInput" placeholder="搜索文章~" autocomplete="off">
-            <button class="btn btn-danger btn-gal" type="submit">
-                <i class="fa fa-search"></i>
-            </button>
-        </form>
-    </div>
-</aside>
-    <aside id="sidebar-author">
-    <div class="panel panel-gal" data-aos="flip-right" data-aos-duration="3000">
-        <div class="panel-heading" style="text-align: center">
-            <i class="fa fa-quote-left"></i>
-            xw
-            <i class="fa fa-quote-right"></i>
-        </div>
-        <div class="author-panel text-center">
-            <img src="/imgs/avatar.jpg" width="140" height="140"
-                 alt="个人头像" class="author-image">
-            <p class="author-description"></p>
-        </div>
-    </div>
-</aside>
-    
-    <aside id="sidebar-recent_comments">
-    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
-        <div class="panel-heading">
-            <i class="fa fa-comments"></i>
-            最新评论
-            <i class="fa fa-times-circle panel-remove"></i>
-            <i class="fa fa-chevron-circle-up panel-toggle"></i>
-        </div>
-        <ul class="list-group list-group-flush"></ul>
-    </div>
-</aside>
-    
-    <!-- 要配置好leancloud才能开启此小工具 -->
-    
-    
-    <aside id="sidebar-recent_posts">
-    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
-        <div class="panel-heading">
-            <i class="fa fa-refresh"></i>
-            近期文章
-            <i class="fa fa-times-circle panel-remove"></i>
-            <i class="fa fa-chevron-circle-up panel-toggle"></i>
-        </div>
-        <ul class="list-group list-group-flush">
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2023/03/09/%E7%9B%B4%E6%8E%A5%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6VS%E5%90%8E%E5%8F%B0%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/">当内存满的时，操作系统会做什么？</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2023/02/15/%E5%9C%B0%E5%9D%80%E5%9D%97%E5%88%92%E5%88%86%E9%97%AE%E9%A2%98/">地址块划分问题</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2023/01/23/%E6%8C%91%E6%88%98leetcode-hot-100%EF%BC%88%E4%B8%80%EF%BC%89/">挑战leetcode hot 100（一）</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2023/01/05/%E5%88%A9%E7%94%A8github%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">利用GitHub搭建一个个人博客</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2023/01/03/%E5%9F%BA%E4%BA%8E%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E7%94%9F%E4%BA%A7%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B%E5%AE%9E%E7%8E%B0/">基于阻塞队列的生产消费者模型实现</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2022/11/14/%E9%9D%99%E6%80%81%E5%BA%93%E4%B8%8E%E5%8A%A8%E6%80%81%E5%BA%93%E7%9A%84%E5%88%B6%E4%BD%9C%E4%B8%8E%E4%BD%BF%E7%94%A8/">静态库与动态库的制作与使用</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2022/03/31/%E7%BB%93%E6%9E%84%E4%BD%93%E7%A9%BA%E9%97%B4%E5%A4%A7%E5%B0%8F%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/">结构体空间大小计算方法</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2022/03/31/%E4%BC%A0%E9%80%81/">传送</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2022/03/30/%E9%98%BB%E6%8C%A1%E5%B9%BF%E5%91%8A%E7%89%8CII/">阻挡广告牌II</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2022/03/23/%E7%A4%BE%E4%BA%A4%E8%B7%9D%E7%A6%BBI/">社交距离I</a>
-                </span>
-            </li>
-            
-        </ul>
-    </div>
-</aside>
-    
-    
-    <aside id="sidebar-rand_posts">
-    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
-        <div class="panel-heading">
-            <i class="fa fa-refresh"></i>
-            随机文章
-            <i class="fa fa-times-circle panel-remove"></i>
-            <i class="fa fa-chevron-circle-up panel-toggle"></i>
-        </div>
-        <ul class="list-group list-group-flush">
-            
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2022/03/22/%E4%B8%89%E8%A7%92%E5%BD%A2/">三角形</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2022/03/19/%E5%8D%95%E8%AF%8D%E5%A4%84%E7%90%86%E5%99%A8/">单词处理器</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2022/03/17/%E5%A5%B6%E7%89%9B%E4%BD%93%E6%93%8D/">奶牛体操</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2023/02/15/%E5%9C%B0%E5%9D%80%E5%9D%97%E5%88%92%E5%88%86%E9%97%AE%E9%A2%98/">地址块划分问题</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2022/03/02/%E5%8E%9F%E5%8D%9A%E5%AE%A2%E5%9C%B0%E5%9D%80/">原博客地址</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2023/01/23/%E6%8C%91%E6%88%98leetcode-hot-100%EF%BC%88%E4%B8%80%EF%BC%89/">挑战leetcode hot 100（一）</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2022/03/16/%E7%89%9B%E7%9A%84%E5%AD%A6%E6%9C%AF%E5%9C%881/">牛的学术圈1</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2022/03/23/%E7%A4%BE%E4%BA%A4%E8%B7%9D%E7%A6%BBI/">社交距离I</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2022/03/30/%E9%98%BB%E6%8C%A1%E5%B9%BF%E5%91%8A%E7%89%8CII/">阻挡广告牌II</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2022/03/19/%E8%A1%8C%E7%9F%A5%E6%9D%AF%E9%A2%98%E8%A7%A3/">新年赛题解</a>
-                </span>
-            </li>
-            
-        </ul>
-    </div>
-</aside>
-    
-    
-    <aside id="gal-sets">
-        <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
-            <ul class="nav nav-pills pills-gal">
+              
+            </div>
 
-                
-                <li>
-                    <a href="/2022/03/19/%E5%8D%95%E8%AF%8D%E5%A4%84%E7%90%86%E5%99%A8/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
-                </li>
-                
-                
-                <li>
-                    <a href="/2022/03/19/%E5%8D%95%E8%AF%8D%E5%A4%84%E7%90%86%E5%99%A8/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
-                </li>
-                
-                
-                <li>
-                    <a href="/2022/03/19/%E5%8D%95%E8%AF%8D%E5%A4%84%E7%90%86%E5%99%A8/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
-                </li>
-                
-            </ul>
-            <div class="tab-content">
-                
-                <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
-    
-    <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.980957945624464px;" class="tag-cloud-link">算法</a>
-    
-    <a href="/tags/cpp/" style="font-size: 18.857301073441274px;" class="tag-cloud-link">cpp</a>
-    
-    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.607620693143243px;" class="tag-cloud-link">计算机网络</a>
-    
-    <a href="/tags/%E8%AF%B4%E6%98%8E/" style="font-size: 9.600656017342033px;" class="tag-cloud-link">说明</a>
-    
-    <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 17.528064074992763px;" class="tag-cloud-link">杂项</a>
-    
-    <a href="/tags/os/" style="font-size: 9.306776448296308px;" class="tag-cloud-link">os</a>
-    
-    <a href="/tags/linux/" style="font-size: 9.781786389456268px;" class="tag-cloud-link">linux</a>
-    
-</div>
-                
-                
-                <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
-    
-    <li>
-        <a href="http://kdays.net/days/" target="_blank">KDays Forum</a>
-    </li>
-    
-    <li>
-        <a href="http://www.gal123.com/" target="_blank">绅士导航♂</a>
-    </li>
-    
-    <li>
-        <a href="http://www.moe123.com/" target="_blank">萌导航</a>
-    </li>
-    
-</div>
-                
-                
-                <div class="links tab-pane nav bs-sidenav fade" id="sidebar-links">
-    
-    <li>
-        <a href="https://github.com/ZEROKISEKI/" target="_blank">Github</a>
-    </li>
-    
-    <li>
-        <a href="https://coding.net/u/SORA1" target="_blank">Coding</a>
-    </li>
-    
-    <li>
-        <a href="https://www.zhihu.com/people/aonosora/activities" target="_blank">知乎</a>
-    </li>
-    
-</div>
-                
-            </div>
+            
+          </article>
         </div>
-    </aside>
+      </div>
+    </div>
     
-</aside>
-            </div>
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
         </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
-    <footer id="gal-footer">
-    <div class="container">
-        Copyright © 2018 xw Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.&nbsp;Theme by <a href="https://github.com/ZEROKISEKI" target="_blank">AONOSORA</a>
-    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://github.com/xw6666" target="_blank" rel="nofollow noopener"><span>MyGithub</span></a> 
+  </div>
+  
+
+  
+
+  
 </footer>
 
-<!-- 回到顶端 -->
-<div id="gal-gotop">
-    <i class="fa fa-angle-up"></i>
-</div>
-</body>
 
-<script src="/js/activate-power-mode.js"></script>
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
-<script>
-
-    // 配置highslide
-	hs.graphicsDir = '/js/highslide/graphics/'
-    hs.outlineType = "rounded-white";
-    hs.dimmingOpacity = 0.8;
-    hs.outlineWhileAnimating = true;
-    hs.showCredits = false;
-    hs.captionEval = "this.thumb.alt";
-    hs.numberPosition = "caption";
-    hs.align = "center";
-    hs.transitions = ["expand", "crossfade"];
-    hs.lang.number = '共%2张图, 当前是第%1张';
-    hs.addSlideshow({
-      interval: 5000,
-      repeat: true,
-      useControls: true,
-      fixedControls: "fit",
-      overlayOptions: {
-        opacity: 0.75,
-        position: "bottom center",
-        hideOnMouseOut: true
-      }
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
     })
+  </script>
 
-    // 初始化aos
-    AOS.init({
-      duration: 1000,
-      delay: 0,
-      easing: 'ease-out-back'
-    });
 
-</script>
-<script>
-	POWERMODE.colorful = 'true';    // make power mode colorful
-	POWERMODE.shake = 'true';       // turn off shake
-	// TODO 这里根据具体情况修改
-	document.body.addEventListener('input', POWERMODE);
-</script>
-<script>
-    window.slideConfig = {
-      prefix: '/imgs/slide/background',
-      ext: 'jpg',
-      maxCount: '6'
-    }
-</script>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
-<script src="/js/hs.js"></script>
-<script src="/js/blog.js"></script>
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>
