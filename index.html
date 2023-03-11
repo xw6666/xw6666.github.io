@@ -1,50 +1,791 @@
-extends base
-include mixins/blocks
-include mixins/themes
 
-block title
-    title= `${config.title}`
 
-block vars
-    case theme.theme
-        when 'combustion-purple'
-                - var bodyClass = 'combustion-purple-skin'
-                - var formType = 'classic'
-        when 'combustion-yellow'
-                - var bodyClass = 'combustion-yellow-skin'
-                - var formType = 'human'
-        when 'fuzzy-hue'
-                - var bodyClass = 'fuzzy-hue-skin'
-                - var formType = 'classic'
-        when 'fuzzy-saturation'
-                - var bodyClass = 'fuzzy-saturation-skin'
-                - var formType = 'classic'
-        when 'ring-blue'
-                - var bodyClass = 'ring-pink-skin'
-                - var formType = 'human'
-        when 'ring-green'
-                - var bodyClass = 'ring-green-skin'
-                - var formType = 'classic'
-        when 'tunnel'
-                - var bodyClass = 'tunnel-skin'
-                - var formType = 'human'
-        when 'waves-deep-purple'
-                - var bodyClass = 'waves-deep-purple-skin'
-                - var formType = 'classic'
-        when 'waves-light-blue'
-                - var bodyClass = 'waves-light-blue-skin'
-                - var formType = 'human'
-    //+vars(theme.theme) //not sure why mixin not working
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="xw">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="website">
+<meta property="og:title" content="XW&#39;s blog">
+<meta property="og:url" content="http://www.wjr.today/index.html">
+<meta property="og:site_name" content="XW&#39;s blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="xw">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>XW&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"www.wjr.today","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>XW</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/2.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Welcome!">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
     
-block spinner
-    +spinner(theme.theme)
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
 
-block hero
-    +hero(theme.theme)
 
-block sections
-    +blocks
+  <div class="row mx-auto index-card">
     
-block skin-script
-    +skin(theme.theme)
     
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/03/09/%E7%9B%B4%E6%8E%A5%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6VS%E5%90%8E%E5%8F%B0%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/" target="_self">
+          当内存满的时，操作系统会做什么？
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2023/03/09/%E7%9B%B4%E6%8E%A5%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6VS%E5%90%8E%E5%8F%B0%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/" target="_self">
+          
+          当应用程序通过malloc申请内存时，实际上申请的是虚拟内存，当CPU去访问具体的虚拟内存时，如果虚拟内存没有被映射成物理内存，此时CPU会产生缺页中断，然后应用程序会从用户态转换到内核态，并调用缺页终端处理函数，缺页中断处理函数会查看是否有未被使用的物理内存，如果有，将直接映射到页表，如果没有，则进行内存回收机制。 后台内存回收（kswapd）后台内存回收是指在物理内存紧张的情况下，系统会启动内
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-03-09 14:28" pubdate>
+              2023-03-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/os/">os</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/os/">os</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/02/15/%E5%9C%B0%E5%9D%80%E5%9D%97%E5%88%92%E5%88%86%E9%97%AE%E9%A2%98/" target="_self">
+          地址块划分问题
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2023/02/15/%E5%9C%B0%E5%9D%80%E5%9D%97%E5%88%92%E5%88%86%E9%97%AE%E9%A2%98/" target="_self">
+          
+          今天复习的时候看到这样一个问题：  其实本质上考察的就是网段划分，首先先介绍一下CIDR划分方案：   引入一个额外的子网掩码(subnet mask)来区分网络号和主机号;  子网掩码也是一个32位的正整数. 通常用一串 “0” 来结尾;  将IP地址和子网掩码进行 “按位与” 操作, 得到的结果就是网络号;  网络号和主机号的划分与这个IP地址是A类、B类还是C类无关;   举一个例子： 假设
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-02-15 15:15" pubdate>
+              2023-02-15
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/01/23/%E6%8C%91%E6%88%98leetcode-hot-100%EF%BC%88%E4%B8%80%EF%BC%89/" target="_self">
+          挑战leetcode hot 100（一）
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2023/01/23/%E6%8C%91%E6%88%98leetcode-hot-100%EF%BC%88%E4%B8%80%EF%BC%89/" target="_self">
+          
+          本篇文章记录leetcode hot 100中的1到10题的求解过程1. 两数之和 非常简单的一道题，将题目转换成x + nums[i] &#x3D;&#x3D; target后得到x &#x3D;&#x3D; target - nums[i]即可哈希。 1234567891011121314class Solution &amp;#123;public:    vector&lt;int&gt; twoSum(vector&lt;int&amp;gt
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-01-23 15:39" pubdate>
+              2023-01-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%9A%8F%E4%BE%BF%E4%B8%80%E5%88%B7/">随便一刷</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/01/05/%E5%88%A9%E7%94%A8github%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" target="_self">
+          利用GitHub搭建一个个人博客
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2023/01/05/%E5%88%A9%E7%94%A8github%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" target="_self">
+          
+          本文通过使用Hexo博客框架搭建静态博客，Hexo博客搭建简单，可以直接使用MarkDown直接写文章，然后Hexo将文章编译成静态文件就直接发布了，所以文章内容没有存放在数据库内。 1.准备条件 GitHub账号  域名（非必须）   2.新建GitHub仓库首先在GitHub任何页面右上角，使用+下拉菜单选择New repository。  这里的仓库名称设置为 username.github
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-01-05 15:33" pubdate>
+              2023-01-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%9D%82%E9%A1%B9/">杂项</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%9D%82%E9%A1%B9/">杂项</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/01/03/%E5%9F%BA%E4%BA%8E%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E7%94%9F%E4%BA%A7%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B%E5%AE%9E%E7%8E%B0/" target="_self">
+          基于阻塞队列的生产消费者模型实现
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2023/01/03/%E5%9F%BA%E4%BA%8E%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E7%94%9F%E4%BA%A7%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B%E5%AE%9E%E7%8E%B0/" target="_self">
+          
+          1.模型介绍生产者消费者模型就是通过一个容器来解决生产者和消费者的强耦合问题。生产者和消费者彼此之间不直接通讯，而通过阻塞队列来进行通讯，所以生产者生产完数据之后不用等待消费者处理，直接扔给阻塞队列，消费者不找生产者要数据，而是直接从阻塞队列里取，阻塞队列就相当于一个缓冲区，平衡了生产者和消费者的处理能力。这个阻塞队列就是用来给生产者和消费者解耦的。 2.模型优点 解耦 支持并发 支持忙闲不均
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-01-03 19:03" pubdate>
+              2023-01-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/linux/">linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/linux/">linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/11/14/%E9%9D%99%E6%80%81%E5%BA%93%E4%B8%8E%E5%8A%A8%E6%80%81%E5%BA%93%E7%9A%84%E5%88%B6%E4%BD%9C%E4%B8%8E%E4%BD%BF%E7%94%A8/" target="_self">
+          静态库与动态库的制作与使用
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/11/14/%E9%9D%99%E6%80%81%E5%BA%93%E4%B8%8E%E5%8A%A8%E6%80%81%E5%BA%93%E7%9A%84%E5%88%B6%E4%BD%9C%E4%B8%8E%E4%BD%BF%E7%94%A8/" target="_self">
+          
+          静态库制作与使用静态库以.a后缀结尾，制作方法如下： 12345libxxx.a:xx.o xx.o xx.o	ar -rc $@ $^       &#x2F;&#x2F;直接打包	%.o:%.c	gcc -c $&lt;                            当需要使用静态库时，如下编译： 1gcc -o $@ $^ -l头文件路径 -L库路径 -l库名     动态库制作与使用静态库以.so后缀
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-11-14 21:10" pubdate>
+              2022-11-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/linux/">linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/linux/">linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/31/%E7%BB%93%E6%9E%84%E4%BD%93%E7%A9%BA%E9%97%B4%E5%A4%A7%E5%B0%8F%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/" target="_self">
+          结构体空间大小计算方法
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/31/%E7%BB%93%E6%9E%84%E4%BD%93%E7%A9%BA%E9%97%B4%E5%A4%A7%E5%B0%8F%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/" target="_self">
+          
+          共用体空间大小计算每个成员变量都从同一个地址开始存储，共用一块空间假设num从0号地址开始存放，int四个字节，即0,1,2,3四个地址存放的是intname是5个连续的char变量，也从0开始存放占用0，1，2，3，4五个地址空间s占用0地址空间共有体的大小（单位字节）一定是最大成员变量类型大小的整数倍在以下结构体中，占空间最大的类型是int(char[5]本质是5个char)，所以结构体大小一
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-31 23:29" pubdate>
+              2022-03-31
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/cpp/">cpp</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/cpp/">cpp</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/31/%E4%BC%A0%E9%80%81/" target="_self">
+          传送
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/31/%E4%BC%A0%E9%80%81/" target="_self">
+          
+          传送 思路： 直接枚举所有情况  直接从a到b的距离 从a走x传送门到y，从y到b的距离 从a走y传送门到x，从x到b的距离这三种情况选一个最短的  1234567891011121314151617181920212223#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;#include &lt;
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-31 23:09" pubdate>
+              2022-03-31
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">每日一题</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/30/%E9%98%BB%E6%8C%A1%E5%B9%BF%E5%91%8A%E7%89%8CII/" target="_self">
+          阻挡广告牌II
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/30/%E9%98%BB%E6%8C%A1%E5%B9%BF%E5%91%8A%E7%89%8CII/" target="_self">
+          
+          阻挡广告牌II 思路：直接找能够让覆盖面积减少的条件，不难发现只有以下五种：             所以分类讨论直接代码实现： 12345678910111213141516171819202122232425#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;#include &lt;cmath&amp;
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-30 23:56" pubdate>
+              2022-03-30
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">每日一题</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/23/%E7%A4%BE%E4%BA%A4%E8%B7%9D%E7%A6%BBI/" target="_self">
+          社交距离I
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/23/%E7%A4%BE%E4%BA%A4%E8%B7%9D%E7%A6%BBI/" target="_self">
+          
+          社交距离I 思路：我们可以通过二分答案来判断此答案下是否能放下两头牛 具体看代码注释 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768#include &lt;iostream&gt;#incl
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-23 23:26" pubdate>
+              2022-03-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">每日一题</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://github.com/xw6666" target="_blank" rel="nofollow noopener"><span>MyGithub</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

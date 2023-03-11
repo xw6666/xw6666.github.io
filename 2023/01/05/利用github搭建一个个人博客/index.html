@@ -1,50 +1,546 @@
-extends base
-include mixins/blocks
-include mixins/themes
 
-block title
-    title= `${config.title}`
 
-block vars
-    case theme.theme
-        when 'combustion-purple'
-                - var bodyClass = 'combustion-purple-skin'
-                - var formType = 'classic'
-        when 'combustion-yellow'
-                - var bodyClass = 'combustion-yellow-skin'
-                - var formType = 'human'
-        when 'fuzzy-hue'
-                - var bodyClass = 'fuzzy-hue-skin'
-                - var formType = 'classic'
-        when 'fuzzy-saturation'
-                - var bodyClass = 'fuzzy-saturation-skin'
-                - var formType = 'classic'
-        when 'ring-blue'
-                - var bodyClass = 'ring-pink-skin'
-                - var formType = 'human'
-        when 'ring-green'
-                - var bodyClass = 'ring-green-skin'
-                - var formType = 'classic'
-        when 'tunnel'
-                - var bodyClass = 'tunnel-skin'
-                - var formType = 'human'
-        when 'waves-deep-purple'
-                - var bodyClass = 'waves-deep-purple-skin'
-                - var formType = 'classic'
-        when 'waves-light-blue'
-                - var bodyClass = 'waves-light-blue-skin'
-                - var formType = 'human'
-    //+vars(theme.theme) //not sure why mixin not working
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="xw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本文通过使用Hexo博客框架搭建静态博客，Hexo博客搭建简单，可以直接使用MarkDown直接写文章，然后Hexo将文章编译成静态文件就直接发布了，所以文章内容没有存放在数据库内。 1.准备条件 GitHub账号  域名（非必须）   2.新建GitHub仓库首先在GitHub任何页面右上角，使用+下拉菜单选择New repository。  这里的仓库名称设置为 username.github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用GitHub搭建一个个人博客">
+<meta property="og:url" content="http://www.wjr.today/2023/01/05/%E5%88%A9%E7%94%A8github%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:site_name" content="XW&#39;s blog">
+<meta property="og:description" content="本文通过使用Hexo博客框架搭建静态博客，Hexo博客搭建简单，可以直接使用MarkDown直接写文章，然后Hexo将文章编译成静态文件就直接发布了，所以文章内容没有存放在数据库内。 1.准备条件 GitHub账号  域名（非必须）   2.新建GitHub仓库首先在GitHub任何页面右上角，使用+下拉菜单选择New repository。  这里的仓库名称设置为 username.github">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.wjr.today/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/1.png">
+<meta property="og:image" content="http://www.wjr.today/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/2.png">
+<meta property="og:image" content="http://www.wjr.today/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/3.png">
+<meta property="og:image" content="http://www.wjr.today/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/4.png">
+<meta property="og:image" content="http://www.wjr.today/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/5.png">
+<meta property="og:image" content="http://www.wjr.today/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/6.png">
+<meta property="og:image" content="http://www.wjr.today/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/7.png">
+<meta property="article:published_time" content="2023-01-05T07:33:31.000Z">
+<meta property="article:modified_time" content="2023-01-08T13:56:56.101Z">
+<meta property="article:author" content="xw">
+<meta property="article:tag" content="杂项">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://www.wjr.today/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/1.png">
+  
+  
+  <title>利用GitHub搭建一个个人博客 - XW&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
     
-block spinner
-    +spinner(theme.theme)
-
-block hero
-    +hero(theme.theme)
-
-block sections
-    +blocks
     
-block skin-script
-    +skin(theme.theme)
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
     
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"www.wjr.today","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>XW</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/1.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="利用GitHub搭建一个个人博客">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2023-01-05 15:33" pubdate>
+        2023年1月5日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      23 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">利用GitHub搭建一个个人博客</h1>
+            
+            <div class="markdown-body">
+              <p>本文通过使用Hexo博客框架搭建静态博客，Hexo博客搭建简单，可以直接使用MarkDown直接写文章，然后Hexo将文章编译成静态文件就直接发布了，所以文章内容没有存放在数据库内。</p>
+<h1 id="1-准备条件"><a href="#1-准备条件" class="headerlink" title="1.准备条件"></a>1.准备条件</h1><ul>
+<li><p>GitHub账号</p>
+</li>
+<li><p>域名（非必须）</p>
+</li>
+</ul>
+<h1 id="2-新建GitHub仓库"><a href="#2-新建GitHub仓库" class="headerlink" title="2.新建GitHub仓库"></a>2.新建GitHub仓库</h1><p>首先在GitHub任何页面右上角，使用+下拉菜单选择New repository。</p>
+<p><img src="/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/1.png" srcset="/img/loading.gif" lazyload></p>
+<p>这里的仓库名称设置为 <code>username.github.io</code>，一定是你的用户名+github.io，例如我的用户名是xw6666，所以我建立的仓库名为<code>xw6666.github.io</code></p>
+<p><img src="/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/2.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="3-为仓库设置SSH—key"><a href="#3-为仓库设置SSH—key" class="headerlink" title="3.为仓库设置SSH—key"></a>3.为仓库设置SSH—key</h1><h2 id="3-1创建密钥对"><a href="#3-1创建密钥对" class="headerlink" title="3.1创建密钥对"></a>3.1创建密钥对</h2><p>在git bash中输入以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/. ssh<br>ssh-keygen -t rsa -C <span class="hljs-string">&quot;邮件地址&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>其中邮箱地址是你的github邮箱</p>
+<p>然后连续三次回车，最终会生产文件在用户目录下，打开用户目录中的.ssh文件夹找到id_rsa.pub文件，如下图所示</p>
+<p><img src="/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/3.png" srcset="/img/loading.gif" lazyload></p>
+<p>使用记事本打开id_rsa.pub并复制其中的所有内容</p>
+<p>之后打开你的GitHub主页点击右上角头像-&gt;Settings-&gt;SSH and GPG keys</p>
+<p>选择<code>New SSH key</code> </p>
+<p><img src="/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/4.png" srcset="/img/loading.gif" lazyload></p>
+<p>将复制内容粘贴此处，Title随便写，之后点击<code>Add SSH key</code></p>
+<p><img src="/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/5.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="3-2测试是否添加成功"><a href="#3-2测试是否添加成功" class="headerlink" title="3.2测试是否添加成功"></a>3.2测试是否添加成功</h2><p>输入以下命令：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">ssh</span> -T git<span class="hljs-variable">@github</span>.com<br></code></pre></td></tr></table></figure>
+
+<p>如果看到以下类似内容，则测试成功。</p>
+<p><img src="/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/6.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="3-3配置git信息"><a href="#3-3配置git信息" class="headerlink" title="3.3配置git信息"></a>3.3配置git信息</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.name</span> <span class="hljs-string">&quot;用户名&quot;</span><br>git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.email</span>  <span class="hljs-string">&quot;邮箱&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>此处一定要填写你的GitHub用户名和GitHub绑定的邮箱。</p>
+<h1 id="4-环境安装"><a href="#4-环境安装" class="headerlink" title="4.环境安装"></a>4.环境安装</h1><h2 id="4-1安装node-js"><a href="#4-1安装node-js" class="headerlink" title="4.1安装node.js"></a>4.1安装node.js</h2><p>在官网选择对应的系统安装则可，记得安装时要勾选写进环境变量中<a target="_blank" rel="noopener" href="https://nodejs.org/en/">https://nodejs.org/en/</a></p>
+<p>安装完成后，首先进行重启！！！</p>
+<p>重启完后在命令提示符中输入以下命令查看是否安装成功</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">npm <span class="hljs-comment">--version</span><br></code></pre></td></tr></table></figure>
+
+<p>如果显示了版本号则成功，进入下一步</p>
+<h2 id="4-2安装Hexo"><a href="#4-2安装Hexo" class="headerlink" title="4.2安装Hexo"></a>4.2安装Hexo</h2><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm">npm install -g hexo-<span class="hljs-keyword">cli</span><br></code></pre></td></tr></table></figure>
+
+<p>安装完后输入hexo，如出现提示符则安装成功，无命令则安装失败。</p>
+<h1 id="5-初始化项目"><a href="#5-初始化项目" class="headerlink" title="5.初始化项目"></a>5.初始化项目</h1><h2 id="5-1创建项目"><a href="#5-1创建项目" class="headerlink" title="5.1创建项目"></a>5.1创建项目</h2><p>使用hexo命令行在你想要的目录下创建项目目录</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp">hexo <span class="hljs-keyword">init</span> &#123;name&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里的name就是项目名字，和你的github用户名相同即可，比如我的就是：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp">hexo <span class="hljs-keyword">init</span> xw6666<br></code></pre></td></tr></table></figure>
+
+<p>不出意外你所在目录下会出现一个新的文件夹，这个文件夹就是项目文件</p>
+<h2 id="5-2编译生成HTML代码"><a href="#5-2编译生成HTML代码" class="headerlink" title="5.2编译生成HTML代码"></a>5.2编译生成HTML代码</h2><p>首先进入刚才生成的文件夹内，在cmd下或者git bash下输入以下命令：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo g</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="5-3本地运行项目"><a href="#5-3本地运行项目" class="headerlink" title="5.3本地运行项目"></a>5.3本地运行项目</h2><p>输入以下命令本地运行项目</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo s</span><br></code></pre></td></tr></table></figure>
+
+<p>之后项目会默认跑在<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a>下，打开浏览器进入会看到你的博客例如：</p>
+<p><img src="/images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/7.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="6-部署项目"><a href="#6-部署项目" class="headerlink" title="6.部署项目"></a>6.部署项目</h1><p>部署项目以后，别人就能访问到你的网站了，hexo给了我们命令让我们可以直接无脑部署。</p>
+<h2 id="6-1设置部署地址"><a href="#6-1设置部署地址" class="headerlink" title="6.1设置部署地址"></a>6.1设置部署地址</h2><p>打开项目根目录下的<code>_config.yml</code>文件，拉到最底下可以看到Deployment，把新建好的复制过来，指定分支为mastero保存退出即可。</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-meta"># Deployment</span><br><span class="hljs-meta">## Docs: https:<span class="hljs-comment">//hexo.io/docs/deployment.html</span></span><br><span class="hljs-symbol">deploy:</span><br><span class="hljs-symbol">  type:</span> git<br><span class="hljs-symbol">  repo:</span> https:<span class="hljs-comment">//github.com/xw6666/xw6666.github.io.git</span><br><span class="hljs-symbol">  branch:</span> master<br></code></pre></td></tr></table></figure>
+
+<h2 id="6-2安装git部署插件"><a href="#6-2安装git部署插件" class="headerlink" title="6.2安装git部署插件"></a>6.2安装git部署插件</h2><p>需要额外在项目目录下安装一个部署插件，如果不安装会报错，安装插件的命令如下：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">npm install hexo-deployer-git <span class="hljs-comment">--save</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="6-3部署项目"><a href="#6-3部署项目" class="headerlink" title="6.3部署项目"></a>6.3部署项目</h2><p>执行如下命令即可：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo -d</span><br></code></pre></td></tr></table></figure>
+
+<p>如果此时出现连接不上github而导致失败的情况，可以参考以下两篇博客：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Hodors/article/details/103226958">https://blog.csdn.net/Hodors/article/details/103226958</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_40908748/article/details/122367878">https://blog.csdn.net/weixin_40908748/article/details/122367878</a></p>
+<h2 id="6-4访问测试"><a href="#6-4访问测试" class="headerlink" title="6.4访问测试"></a>6.4访问测试</h2><p>成功后，这时候我们访问一下 GitHub Repository 同名的链接，比如我的<code>xw6666</code>博客的 Repository 名称取的是<code>xw6666.github.io</code>，那我就访问 <a target="_blank" rel="noopener" href="http://xw6666.github.io/">http://xw6666.github.io</a>，这时候我们就可以看到跟本地一模一样的博客内容了，如果看不到不要着急，github有延迟，等几分钟就行了。</p>
+<h2 id="6-5备份源码"><a href="#6-5备份源码" class="headerlink" title="6.5备份源码"></a>6.5备份源码</h2><p>因为是静态博客，所以我写的文章都在本地，那我换了电脑之后就没了，所以需要备份，备份很简单，新建一个其他分支，然后全push上去就行了，例如我创建了一个source分支保存源码。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git init    <span class="hljs-comment">//初始化项目</span><br>git checkout -<span class="hljs-selector-tag">b</span> source    <span class="hljs-comment">//创建并切换到source分支</span><br>git add -A    <span class="hljs-comment">//添加所有文件到暂存区</span><br>git commit -m <span class="hljs-string">&quot;init blog&quot;</span>    <span class="hljs-comment">//提交并注释</span><br>git remote add origin git@github<span class="hljs-selector-class">.com</span>:xw6666/xw6666<span class="hljs-selector-class">.github</span><span class="hljs-selector-class">.io</span><span class="hljs-selector-class">.git</span>    <span class="hljs-comment">//添加到远程仓库</span><br>git push origin source    <span class="hljs-comment">//将代码提交到远程的source分支</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="6-6配置主题"><a href="#6-6配置主题" class="headerlink" title="6.6配置主题"></a>6.6配置主题</h2><p>默认的主题肯定是不好看的，可以去网上找一套主题，之后把主题的文件夹放在项目下的<code>themes</code>文件夹中，并在项目根目录的<code>_config.yml</code>中找到<code>theme: </code>，填入你的主题文件夹名字即可。</p>
+<h1 id="7-域名解析"><a href="#7-域名解析" class="headerlink" title="7.域名解析"></a>7.域名解析</h1><p>具体可以参考这篇文章，这里不再赘述</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lijing742180/article/details/85549978">https://blog.csdn.net/lijing742180/article/details/85549978</a></p>
+<h1 id="8-写文章"><a href="#8-写文章" class="headerlink" title="8.写文章"></a>8.写文章</h1><p>博客搭建好了，可以在本地写文章上传。</p>
+<h2 id="8-1生成文章"><a href="#8-1生成文章" class="headerlink" title="8.1生成文章"></a>8.1生成文章</h2><p>在项目根目录中输入以下命令：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">hexo <span class="hljs-keyword">new</span> <span class="hljs-string">&quot;你要写的文章标题&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>之后hexo会自动在<code>source/_posts</code>下生成一个markdown文档，在里面写就行了。</p>
+<h2 id="8-2上传文章"><a href="#8-2上传文章" class="headerlink" title="8.2上传文章"></a>8.2上传文章</h2><p>在根目录输入以下命令：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">hexo clean   <span class="hljs-regexp">//</span>清除一些缓存<br>hexo g -d    <span class="hljs-regexp">//</span>编译文件并上传至云端<br></code></pre></td></tr></table></figure>
+
+<p>成功之后在你的网站等几分钟就更新了。</p>
+<h2 id="8-3备份文章"><a href="#8-3备份文章" class="headerlink" title="8.3备份文章"></a>8.3备份文章</h2><p>养成好习惯，写完一篇文章上传以后立马备份：</p>
+<p>首先先切换以下分支，我的备份分支叫<code>source</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git checkout <span class="hljs-built_in">source</span><br></code></pre></td></tr></table></figure>
+
+<p>之后就是git三板斧：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">git add .  <span class="hljs-regexp">//</span>将当前目录下的所有内容加入<br>git commit -m <span class="hljs-string">&quot;注释&quot;</span>  <span class="hljs-regexp">//</span>提交并注释<br>git push origin source   <span class="hljs-regexp">//</span>推送到远端分支<br></code></pre></td></tr></table></figure>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%9D%82%E9%A1%B9/">杂项</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%9D%82%E9%A1%B9/">杂项</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/01/23/%E6%8C%91%E6%88%98leetcode-hot-100%EF%BC%88%E4%B8%80%EF%BC%89/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">挑战leetcode hot 100（一）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/01/03/%E5%9F%BA%E4%BA%8E%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E7%94%9F%E4%BA%A7%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B%E5%AE%9E%E7%8E%B0/">
+                        <span class="hidden-mobile">基于阻塞队列的生产消费者模型实现</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://github.com/xw6666" target="_blank" rel="nofollow noopener"><span>MyGithub</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
