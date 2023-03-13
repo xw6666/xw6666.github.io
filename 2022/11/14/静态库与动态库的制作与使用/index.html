@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      undefined 字
+      386 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      NaN 分钟
+      4 分钟
     </span>
   
 
@@ -239,18 +239,18 @@
             
             <div class="markdown-body">
               <h1 id="静态库制作与使用"><a href="#静态库制作与使用" class="headerlink" title="静态库制作与使用"></a>静态库制作与使用</h1><p>静态库以.a后缀结尾，制作方法如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">libxxx.a:xx.o xx.o xx.o</span><br><span class="line">	ar -rc $@ $^       //直接打包</span><br><span class="line">	</span><br><span class="line">%.o:%.c</span><br><span class="line">	gcc -c $&lt;                          </span><br></pre></td></tr></table></figure>
+<figure class="highlight mel"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><pre><code class="hljs mel">libxxx.a:xx.o xx.o xx.o<br>	ar -rc $@ $^       <span class="hljs-comment">//直接打包</span><br>	<br>%.o:%.c<br>	gcc -c $&lt;                          <br></code></pre></td></tr></table></figure>
 
 <p>当需要使用静态库时，如下编译：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o $@ $^ -l头文件路径 -L库路径 -l库名   </span><br></pre></td></tr></table></figure>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crystal">gcc -o <span class="hljs-variable">$@</span> <span class="hljs-variable">$^</span> -l头文件路径 -L库路径 -l库名   <br></code></pre></td></tr></table></figure>
 
 <h1 id="动态库制作与使用"><a href="#动态库制作与使用" class="headerlink" title="动态库制作与使用"></a>动态库制作与使用</h1><p>静态库以.so后缀结尾，制作方法如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">libxxx.so:xx.o xx.o</span><br><span class="line">	gcc -shared -o $@ $^ </span><br><span class="line"></span><br><span class="line">%.o:%.c</span><br><span class="line">	gcc -fPIC -c $&lt;   //-fPIC全部生成绝对地址，因为动态库用的时候才调用</span><br></pre></td></tr></table></figure>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mel">libxxx.so:xx.o xx.o<br>	gcc -shared -o $@ $^ <br><br>%.o:%.c<br>	gcc -fPIC -c $&lt;   <span class="hljs-comment">//-fPIC全部生成绝对地址，因为动态库用的时候才调用</span><br></code></pre></td></tr></table></figure>
 
 <p>当需要使用动态库时，有如下方法：</p>
 <ul>
 <li><p>首先先编译：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o $@ $ -I+头文件路径 -L+库路径 -l+库名</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crystal">gcc -o <span class="hljs-variable">$@</span> <span class="hljs-variable">$ </span>-I+头文件路径 -L+库路径 -l+库名<br></code></pre></td></tr></table></figure></li>
 <li><p>需要更改LD_LIBRARY_PATH环境变量路径</p>
 </li>
 <li><p>或者将.so文件拷贝到系统共享库目录下，一般是/usr/lib</p>

@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      undefined 字
+      1.3k 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      NaN 分钟
+      11 分钟
     </span>
   
 
@@ -239,11 +239,11 @@
             
             <div class="markdown-body">
               <h2 id="共用体空间大小计算"><a href="#共用体空间大小计算" class="headerlink" title="共用体空间大小计算"></a>共用体空间大小计算</h2><p>每个成员变量都从同一个地址开始存储，共用一块空间<br>假设num从0号地址开始存放，int四个字节，即0,1,2,3四个地址存放的是int<br>name是5个连续的char变量，也从0开始存放占用0，1，2，3，4五个地址空间<br>s占用0地址空间<br>共有体的大小（单位字节）一定是最大成员变量类型大小的整数倍<br>在以下结构体中，占空间最大的类型是int(char[5]本质是5个char)，所以结构体大小一定是4的整数倍<br>即4，8，12，16..由于4个字节不够装下char name[5]，所以这个结构体大小是8字节</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">union</span> <span class="title class_">stu1</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> num;</span><br><span class="line">	<span class="type">char</span> name[<span class="number">5</span>];</span><br><span class="line">	<span class="type">char</span> s;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">union</span> <span class="hljs-title class_">stu1</span><br>&#123;<br>	<span class="hljs-type">int</span> num;<br>	<span class="hljs-type">char</span> name[<span class="hljs-number">5</span>];<br>	<span class="hljs-type">char</span> s;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 
 
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据上述分析，这个结构体字节大小只能是8,16,24...所以结构体大小是16字节</span></span><br><span class="line"><span class="keyword">union</span> <span class="title class_">stu3</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">double</span> num;</span><br><span class="line">	<span class="type">char</span> name[<span class="number">9</span>];</span><br><span class="line">	<span class="type">char</span> s;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//根据上述分析，这个结构体字节大小只能是8,16,24...所以结构体大小是16字节</span><br><span class="hljs-keyword">union</span> <span class="hljs-title class_">stu3</span><br>&#123;<br>	<span class="hljs-type">double</span> num;<br>	<span class="hljs-type">char</span> name[<span class="hljs-number">9</span>];<br>	<span class="hljs-type">char</span> s;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -256,18 +256,18 @@
 <li>如果嵌套了结构体的情况，嵌套的结构体对齐到自己的最大对齐数的整数倍处，结构体的总大小就是所有最大对齐数（含嵌套结构体的对齐数）的整数倍。</li>
 </ol>
 <p>对齐数 = min(编译器默认对齐数，该成员类型大小)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">stu2</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> num;</span><br><span class="line">	<span class="type">char</span> name[<span class="number">5</span>];</span><br><span class="line">	<span class="type">char</span> s;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">stu2</span><br>&#123;<br>	<span class="hljs-type">int</span> num;<br>	<span class="hljs-type">char</span> name[<span class="hljs-number">5</span>];<br>	<span class="hljs-type">char</span> s;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 <p>我们来具体分析一下 上述结构体：</p>
 <p>首先假设num从0地址处开始存放，所以占用0,1,2,3四个地址(第一个成员在与结构体变量偏移量为0的地址处)，然后name本质上是连续的char类型，char的对齐数是 min(8, sizeof(char)) = 1，所以地址4是可以放char的，因为4是1的倍数，于是4到8这5个地址存储 name[5]，之后s的对齐数还是1，所以9号地址放s，这时候我们一共使用了10个地址(0到9)，根据结构体总大小为最大对齐数的整数倍，这里的最大对齐数是int的对齐数是4,所以一定要是4的整数倍，所以10字节不是我们的答案，12才是。</p>
 <p>再来一个例子：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">stu2</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">char</span> name;</span><br><span class="line">	<span class="type">int</span> num;</span><br><span class="line">	<span class="type">char</span> s;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">stu2</span><br>&#123;<br>	<span class="hljs-type">char</span> name;<br>	<span class="hljs-type">int</span> num;<br>	<span class="hljs-type">char</span> s;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 <p>name假设放0地址数，num的对齐数是min(8,sizeof(int)) = 4,所以num从4号开始放，占用4,5,6,7</p>
 <p>最后char占用8号地址，一共使用9个字节空间(0到8),不是4的整数倍，所以补到12个字节空间，结构体总大小为12字节。</p>
 <h2 id="自己设置对齐数"><a href="#自己设置对齐数" class="headerlink" title="自己设置对齐数"></a>自己设置对齐数</h2><p>通过#pragma pack()宏，可以实现自己设置对齐数</p>
 <p>例如：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="keyword">pragma</span> pack(1)   <span class="comment">//设置对齐数为1</span></span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">stu2</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">char</span> name;</span><br><span class="line">	<span class="type">int</span> num;</span><br><span class="line">	<span class="type">char</span> s;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">pragma</span> pack(1)   <span class="hljs-comment">//设置对齐数为1</span></span><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">stu2</span><br>&#123;<br>	<span class="hljs-type">char</span> name;<br>	<span class="hljs-type">int</span> num;<br>	<span class="hljs-type">char</span> s;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 <p>这时候所有的成员大小都是1的倍数，所以直接顺序存放，name假设放0地址处，num就放1，2，3，4，s放5，一共6个字节，是对齐数1的倍数，不用额外空间。</p>
 
